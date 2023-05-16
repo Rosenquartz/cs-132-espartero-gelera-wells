@@ -197,7 +197,7 @@ input, select, textarea {
 		border-top-color: rgba(0, 0, 0, 0.35);
 		box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.1);
 		height: 1px;
-		margin: 3em 0;
+		margin: 2em 0;
 	}
 
 	p, ul, ol, dl, table {
@@ -2478,5 +2478,33 @@ input, select, textarea {
 .data-p {
 	margin-top: auto;
 	margin-bottom: auto;
-	font-size: 1.25em;
+	font-size: 1em;
+}
+
+.img-container {
+	display: flex;
+	height: 400px;
+}
+
+.img-caption {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.div-table {
+	padding-top: 20px;
+	display: flex;
+	justify-content: center;
+}
+
+.data-table {
+	max-width: 70%;
+}
+
+.data-table tr th {
+    border: solid 2px #987554;
+}
+
+.data-table tr td {
+    border: solid 2px #987554;
 }

@@ -23,6 +23,7 @@
 				<header>
 					<h2>Data exploration</h2>
 				</header>
+
 				<hr>
 
 				<div>
@@ -31,21 +32,184 @@
 
 				<hr>
 
-				<div class="row data-row mg-0">
-					<div class="col-5 mg-0 pd-0 data-img-row">
-						<img src="images/date-posted-year-distribution.png" alt="Date posted (Year) distribution" class="data-img">
-					</div>
-					<div class="col-7 mg-0 pd-0 data-p-row">
-						<p class="data-p">This graph shows the date distribution of the collected tweets.</p>
-					</div>
+				<div class="img-caption">
+					<p align="justify">
+						First, let's discuss the metadata of the collected tweets. The 150 collected tweets were from 109 unique accounts. We cleaned the datatypes of the tweets to be the correct type used in pandas. For example, we switched the "Joined" column to be of type datetime instead of type object. While cleaning the data, we found that all the "Joined" fields (referring to the user's join date on Twitter), the "Date posted" fields (referring to when the tweet was posted), and the "Timestamp" fields (referring to when the tweet data was collected) were all filled (in other words, there were no null values). This is of particular importance to our study as it is relevant to our hypothesis.
+					</p> 
+					<p align="justify">
+						The tweets were collected using the snstwitter module of the <a href="https://github.com/JustAnotherArchivist/snscrape">snscrape library</a>. The tweets collected were from 2016 to 2022.
+					</p>
+					<p align="justify">
+						Now, let's dive into the data itself.
+					</p>
+				</div>		
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Three keywords were used as prompts in scraping the data. They were "angel locsin npa", "liza soberano npa", and "abs cbn npa". These three keywords are highly related to each other; celebrities Angel Locsin and Liza Soberano are often lumped together with the organization ABS-CBN during discussions and accusations revolving around whether these entities are related to the National People's Association (NPA). Let's look at the distribution of the collected data:</p>
+				</div>
 
+				<div class="img-container">
+					<img src="images/1-keyword-histogram.png" alt="Keyword Distribution" class="data-img">
 				</div>
 				
-				<hr>
+				<div class="img-caption">
+					<p class="data-p" align="justify">The graph above shows that we have an imbalance. The dataset skews towards "angel locsin npa" tweets. We take note of this, especially when doing the analysis.</p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Let's also look at when the data was posted.</p>
+				</div>
 
-				<div class="row data-row mg-0">
-					<div class="col-12 mg-0 pd-0 data-img-row"><img src="images/date-posted-year-distribution.png" alt="Date posted (Year) distribution" class="data-img"></div>
-					<p>This graph shows the date distribution of the collected tweets.</p>
+				<div class="img-container">
+					<img src="images/2-date-posted-year-distribution.png" alt="Date posted (Year) distribution" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">This graph shows the date distribution, by year, of the collected tweets. Notice how there is a spike in activity in 2020 and in 2022. To further understand this, let's also look at the date distribution, by month.</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/3-date-posted-by-month.png" alt="Date posted (Month) distribution" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">This graph shows the distribution, by month, of the collected tweets. Although we can eyeball the peaks from the charts above, let's get their exact dates:</p>
+				</div>
+
+				<div class="div-table">
+					<table class="data-table" border="3">
+						<caption>Monthly Distribution of Tweets (Descending)</caption>
+						<tr>
+						  <th>Date posted</th>
+						  <th>Number of Tweets marked as Disinformation</th>
+						</tr>
+						<tr>
+						  <td>2020-10</td>
+						  <td>21</td>
+						</tr>
+						<tr>
+						  <td>2020-07</td>
+						  <td>9</td>
+						</tr>
+						<tr>
+						  <td>2021-04</td>
+						  <td>9</td>
+						</tr>
+						<tr>
+						  <td>2022-08</td>
+						  <td>9</td>
+						</tr>
+						<tr>
+						  <td>2022-04</td>
+						  <td>8</td>
+						</tr>
+						<tr>
+						  <td>2022-11</td>
+						  <td>7</td>
+						</tr>
+						<tr>
+						  <td>2022-03</td>
+						  <td>7</td>
+						</tr>
+						<tr>
+						  <td>2022-04</td>
+						  <td>6</td>
+						</tr>
+						<tr>
+						  <td>2021-03</td>
+						  <td>5</td>
+						</tr>
+						<tr>
+						  <td>2020-02</td>
+						  <td>5</td>
+						</tr>
+					  </table>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Looks like our maxima is on October 2020. We take note of the other peaks. This will be useful when analyzing tweet activity. Let's also look at how the keywords were distributed in terms of the date posted.</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/5-keyword-graph.png" alt="Date posted distribution, including Keywords" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify"></p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/4-keyword-granular.png" alt="Date posted (Month) distribution, including Keywords" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">We offer a simple explanation of why there was a spike of tweets marked as disinformation during this time. On October 21, 2020, Lt. Gen. Antonio Parlade issued a statement on Liza Soberano's participation in a webinar hosted by Gabriela Youth. Parlade warned Soberano not to associate herself with such groups, stating, "Liza Soberano, there' s still a chance to abdicate that group. If you don't, you will suffer the same fate as Josephine Anne Lapira @ELLA, former Deputy Secretary General of Gabriela Youth of UP, Manila and defender of women's rights, even against sexual predators amongst her comrades in the NPA unit she joined which is clearly stated in her handwritten letter addressed to a certain @EMIL." The general also mentioned the names of other celebrities previously linked to the NPA, stating, "The choice is yours Liza. And so with you Catriona. Don’t follow the path Ka Ella Colmenares (Locsin) took in the underground and NPA (New People’s Army) Quezon. I am sure Angel Locsin and Neri Colmenares will not tell you this." </p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">In response to the underhanded threat in the general's statement, Angel Locsin called out this behaviour in a tweet, adding the hashtags #NoToRedTagging and #YesToRedLipstick. This has been picked on by people critical to the actress by claiming that this just proves the accusation that Angel Locsin is affliated with the NPA.</p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">(Sources: <a href="https://news.abs-cbn.com/news/10/22/20/military-official-warns-liza-soberano-catriona-gray-on-ties-with-womens-rights-group">Military official warns Liza Soberano, Catriona Gray on ties with women's rights group</a>, <a href="https://www.rappler.com/entertainment/celebrities/angel-locsin-message-parlade-stop-red-tagging/?fbclid=IwAR1hGZxzanYLdfgca6r3ojzu2CeqwpDAVdvfN8Y-EIHAxdkG8BtgcsptTfY">Angel Locsin to parlade</a>)</p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Next, let's look into the users behind the tweets we collected. We found that the 150 tweets we collected were from 109 unique users. Let's look at when these motherfuckers joined Twitter.</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/date-posted-year-distribution.png" alt="Date posted (Year) distribution" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Let's also look into whether the months in the "Joined" field have some correlation with the "Date posted" month of each tweet.
+				</div>
+
+				<div class="div-table">
+					<table class="data-table" border="3">
+						<caption>Pearson Correlation of "Joined" and "Date posted" fields (by Month)</caption>
+						<tr>
+						  <th></th>
+						  <th>Joined</th>
+						  <th>Date posted</th>
+						</tr>
+						<tr>
+						  <td>Joined</td>
+						  <td>1.00000</td>
+						  <td>0.15154</td>
+						</tr>
+						<tr>
+						  <td>Date posted</td>
+						  <td>0.15154</td>
+						  <td>1.00000</td>
+						</tr>
+					  </table>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">No `Pearson` correlation can be found over their <strong>months</strong>. However, the table below shows that there is a strong correlation between their <strong>years</strong>.</p>
+				</div>
+
+				<div class="div-table">
+					<table class="data-table" border="3">
+						<caption>Pearson Correlation of "Joined" and "Date posted" fields (by Year)</caption>
+						<tr>
+						  <th></th>
+						  <th>Joined</th>
+						  <th>Date posted</th>
+						</tr>
+						<tr>
+						  <td>Joined</td>
+						  <td>1.00000</td>
+						  <td>0.87257</td>
+						</tr>
+						<tr>
+						  <td>Date posted</td>
+						  <td>0.87257</td>
+						  <td>1.00000</td>
+						</tr>
+					  </table>
 				</div>
 			</div>
 		</article>
