@@ -31,18 +31,22 @@
 				</div>
 
 				<hr>
-
+				
 				<div class="img-caption">
-					<p align="justify">
-						First, let's discuss the metadata of the collected tweets. The 150 collected tweets were from 109 unique accounts. We cleaned the datatypes of the tweets to be the correct type used in pandas. For example, we switched the "Joined" column to be of type datetime instead of type object. While cleaning the data, we found that all the "Joined" fields (referring to the user's join date on Twitter), the "Date posted" fields (referring to when the tweet was posted), and the "Timestamp" fields (referring to when the tweet data was collected) were all filled (in other words, there were no null values). This is of particular importance to our study as it is relevant to our hypothesis.
-					</p> 
-					<p align="justify">
-						The tweets were collected using the snstwitter module of the <a href="https://github.com/JustAnotherArchivist/snscrape">snscrape library</a>. The tweets collected were from 2016 to 2022.
-					</p>
-					<p align="justify">
-						Now, let's dive into the data itself.
-					</p>
-				</div>		
+					<p class="data-p" align="justify">
+						First, let's discuss the metadata of the collected tweets. The 150 collected tweets were from 109 unique accounts. We cleaned the datatypes of the tweets to be the correct type used in pandas. For example, we switched the "Joined" column to be of type datetime instead of type object. While cleaning the data, we found that all the "Joined" fields (referring to the user's join date on Twitter), the "Date posted" fields (referring to when the tweet was posted), and the "Timestamp" fields (referring to when the tweet data was collected) were all filled (in other words, there were no null values). This is of particular importance to our study as it is relevant to our hypothesis.</p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						The tweets were collected using the snstwitter module of the <a href="https://github.com/JustAnotherArchivist/snscrape">snscrape library</a>. The tweets collected were from 2016 to 2022.</p>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify"><strong>Now, let's dive into the data.</strong></p>
+				</div>
+
+				<hr>
 				
 				<div class="img-caption">
 					<p class="data-p" align="justify">Three keywords were used as prompts in scraping the data. They were "angel locsin npa", "liza soberano npa", and "abs cbn npa". These three keywords are highly related to each other; celebrities Angel Locsin and Liza Soberano are often lumped together with the organization ABS-CBN during discussions and accusations revolving around whether these entities are related to the National People's Association (NPA). Let's look at the distribution of the collected data:</p>
@@ -80,8 +84,8 @@
 					<table class="data-table" border="3">
 						<caption>Monthly Distribution of Tweets (Descending)</caption>
 						<tr>
-						  <th>Date posted</th>
-						  <th>Number of Tweets marked as Disinformation</th>
+						  <th style="width:40%">Date posted</th>
+						  <th style="width:60%">Number of Tweets marked as Disinformation</th>
 						</tr>
 						<tr>
 						  <td>2020-10</td>
@@ -155,7 +159,135 @@
 				</div>
 				
 				<div class="img-caption">
-					<p class="data-p" align="justify">Next, let's look into the users behind the tweets we collected. We found that the 150 tweets we collected were from 109 unique users. Let's look at when these motherfuckers joined Twitter.</p>
+					<p class="data-p" align="justify">Before we finish this section, let's examine if there's a correlation between each of the keywords.</p>
+				</div>
+
+				<div class="div-table">
+					<table class="data-table" border="3">
+						<caption>Pearson Correlation of "Keywords"fields against each other</caption>
+						<tr>
+						  <th>Keyword</th>
+						  <th>abs cbn npa</th>
+						  <th>angel locsin npa</th>
+						  <th>liza soberano npa</th>
+						</tr>
+						<tr>
+						  <th>abs cbn npa</th>
+						  <td>1.000000</td>
+						  <td>0.341635</td>
+						  <th>0.241742</th>
+						</tr>
+						<tr>
+						  <th>angel locsin npa</th>
+						  <td>0.341635</td>
+						  <td>1.000000</td>
+						  <td>0.183061</td>
+						</tr>
+						<tr>
+						  <th>liza soberano npa</th>
+						  <td>0.241742</td>
+						  <td>0.183061</td>
+						  <td>01.000000</td>
+						</tr>
+					  </table>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">The strongest Pearson correlation we find is between Angel Locsin tweets and ABS CBN tweets. </p>
+				</div>
+
+				<hr>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">The next feature we look into is how engagement features are related to time (Date posted). We identify engagement columns as the Likes, Replies, Retweets, Quote Tweets, and Views, all which represent numerical values. However, we find that not all these columns are reliable, the basis of which is the number of nonzero values of the data. In fact, of the 150 tweets, we only have the following number of nonzero values in each column:</p>
+				</div>
+
+				<div class="div-table">
+					<table class="data-table" border="3">
+						<caption>Number of nonzero values of Engagement columns</caption>
+						<tr>
+						  <th style="width:50%">Likes</th>
+						  <th style="width:50%">59</th>
+						</tr>
+						<tr>
+						  <th>Replies</th>
+						  <th>39</th>
+						</tr>
+						<tr>
+						  <th>Retweets</th>
+						  <th>18</th>
+						</tr>
+						<tr>
+						  <th>Quote Tweets</th>
+						  <th>5</th>
+						</tr>
+						<tr>
+						  <th>Views</th>
+						  <th>0</th>
+						</tr>
+					  </table>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Likes and Replies have the most values; on the other hand, Views has all zeroes, and is unuseable. Let's look at how concentrated the number of Likes and Replies are:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/6-concentration-likes.png" alt="Concentration of number of Likes" class="data-img">
+				</div>
+
+				<br>
+
+				<div class="img-container">
+					<img src="images/7-concentration-replies.png" alt="Concentration of number of Replies" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Visually inspecting these histograms shows that majority of nonzero `Likes` lie in the range `[1, 6]`. For `Replies`, this is a much smaller range of `[1, 3]`. Moving forward, we're careful of using sum and total aggregates when dealing with engagement.</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/8-engagement.png" alt="Engagement vs Date posted" class="data-img">
+				</div>
+
+				<hr>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">We now try to inspect which words appear most frequently in the tweets. Before that, we remove the stopwords and the queries that we used (as we expect to see it as part of the text) using the Natural Language Toolkit (nltk) library.</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/9-words.png" alt="Most common keywords in the tweets" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Even as we remove the queries that we used, similar keywords pop up, such as "abscbn" instead of "abs cbn". Some commonly used words like "kayo" or "nya" are also not removed by the library as the Filipino language is currently not supported by nltk. We can visualize the result as a word cloud:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/10-common-words-wordcloud.png" alt="Most common keywords visualized using a word cloud" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">How about the Content type of the tweets? We manually annotated the data with three possible types: Emotional, Rational, and Transactional tweets. The following figure shows the number of tweets of each type:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/13-content-type.png" alt="Content type of the tweets" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Since we're doing a time series analysis, let's also look at Date posted plotted against the Content type:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/14-date-posted-content-type.png" alt="Date posted vs content type" class="data-img">
+				</div>
+
+				<hr>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">After examining the content of the tweets, let's also look into the users behind the tweets. We found that the 150 tweets we collected were from 109 unique users. Let's look at when these users joined Twitter.</p>
 				</div>
 
 				<div class="img-container">
@@ -170,9 +302,9 @@
 					<table class="data-table" border="3">
 						<caption>Pearson Correlation of "Joined" and "Date posted" fields (by Month)</caption>
 						<tr>
-						  <th></th>
-						  <th>Joined</th>
-						  <th>Date posted</th>
+						  <th style="width:30%"></th>
+						  <th style="width:35%">Joined</th>
+						  <th style="width:35%">Date posted</th>
 						</tr>
 						<tr>
 						  <td>Joined</td>
@@ -195,9 +327,9 @@
 					<table class="data-table" border="3">
 						<caption>Pearson Correlation of "Joined" and "Date posted" fields (by Year)</caption>
 						<tr>
-						  <th></th>
-						  <th>Joined</th>
-						  <th>Date posted</th>
+						  <th style="width:30%"></th>
+						  <th style="width:35%">Joined</th>
+						  <th style="width:35%">Date posted</th>
 						</tr>
 						<tr>
 						  <td>Joined</td>
@@ -210,6 +342,26 @@
 						  <td>1.00000</td>
 						</tr>
 					  </table>
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Note that a strong year correlation could be a product of Twitter's growing userbase over time. <br>Next we look into who the most frequent users are:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/11-frequent-poster.png" alt="Date posted (Year) distribution" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">(Note: the words bounded by colons (:word:) are emojis.) Let's see what the user's bios say, using a word cloud:</p>
+				</div>
+
+				<div class="img-container">
+					<img src="images/12-bio-wordcloud.png" alt="Date posted (Year) distribution" class="data-img">
+				</div>
+				
+				<div class="img-caption">
+					<p class="data-p" align="justify">Apologies for the boxes, those are characters that cannot be rendered properly by the word cloud library. Note also that some of these 'words' are actually emojis, such as the 'red_heart' actually representing a red heart emoji.</p>
 				</div>
 			</div>
 		</article>
