@@ -199,7 +199,7 @@
 				<hr>
 				
 				<div class="img-caption">
-					<p class="data-p" align="justify">The next feature we look into is how engagement features are related to time (Date posted). We identify engagement columns as the Likes, Replies, Retweets, Quote Tweets, and Views, all which represent numerical values. However, we find that not all these columns are reliable, the basis of which is the number of nonzero values of the data. In fact, of the 150 tweets, we only have the following number of nonzero values in each column:</p>
+					<p class="data-p" align="justify">The next feature we look into is how engagement features are related to time (Date posted). We identify engagement columns as the Likes, Replies, Retweets, Quote Tweets, and Views, all which represent numerical values. However, we find that not all these columns are reliable, the basis of which is the number of nonzero values of the data. It is important to note that the scraper sometimes returned no values for some of the fields; in that case we replaced the null values with 0s instead using the fillna() method of pandas.  Of the 150 tweets, we only have the following number of nonzero values in each column:</p>
 				</div>
 
 				<div class="div-table">
@@ -229,7 +229,7 @@
 				</div>
 				
 				<div class="img-caption">
-					<p class="data-p" align="justify">Likes and Replies have the most values; on the other hand, Views has all zeroes, and is unuseable. Let's look at how concentrated the number of Likes and Replies are:</p>
+					<p class="data-p" align="justify">Likes and Replies have the most nonzero values; on the other hand, Views has all zeroes, and is unuseable. Let's look at how concentrated the number of Likes and Replies are:</p>
 				</div>
 
 				<div class="img-container">
@@ -253,7 +253,7 @@
 				<hr>
 				
 				<div class="img-caption">
-					<p class="data-p" align="justify">We now try to inspect which words appear most frequently in the tweets. Before that, we remove the stopwords and the queries that we used (as we expect to see it as part of the text) using the Natural Language Toolkit (nltk) library.</p>
+					<p class="data-p" align="justify">We now try to inspect which words appear most frequently in the tweets. Before that, we remove the stopwords and the queries that we used (as we expect to see it as part of the text) using the Natural Language Toolkit (nltk) library. We make sure that the data is consistent (all words are lowercase) before finding the most common keywords:</p>
 				</div>
 
 				<div class="img-container">
@@ -261,7 +261,7 @@
 				</div>
 				
 				<div class="img-caption">
-					<p class="data-p" align="justify">Even as we remove the queries that we used, similar keywords pop up, such as "abscbn" instead of "abs cbn". Some commonly used words like "kayo" or "nya" are also not removed by the library as the Filipino language is currently not supported by nltk. We can visualize the result as a word cloud:</p>
+					<p class="data-p" align="justify">Even as we remove the queries that we used, similar keywords pop up, such as "abscbn" instead of "abs cbn". Note that we also used a <a href="https://github.com/stopwords-iso/stopwords-tl">Filipino stopword library</a> to parse out commonly used Filipino words, although slang notation like "nya" (instead of "niya") weren't parsed out. We can visualize the result as a word cloud:</p>
 				</div>
 
 				<div class="img-container">
