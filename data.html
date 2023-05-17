@@ -38,6 +38,37 @@
 				</div>
 				
 				<div class="img-caption">
+					<code>
+def clean_datatypes(df):
+    for column in df:
+        if column in ['ID', 'Tweet URL', 'Account handle', 'Account name', 'Account bio', 'Location', 'Tweet', 'Tweet Translated', 'Screenshot', 'Reasoning', 'Remarks']:
+            df[column] = df[column].astype('string')
+        elif column in ['Group', 'Collector', 'Category', 'Keywords', 'Account type', 'Tweet Type', 'Content type']:
+            df[column] = pd.Categorical(df[column])
+        elif column in ['Following', 'Followers', 'Likes', 'Replies', 'Retweets', 'Quote Tweets', 'Views', 'Rating']:
+            df[column] = df[column].astype('int64')
+        elif column in ['Timestamp', 'Date posted']:
+            df[column] = pd.to_datetime(df[column])
+
+    # Handle special case of Joiend col. where MM/YY
+    df['Joined'] = df['Joined'].map(
+        lambda x: f'{x.split("/")[0]}/{int(x.split("/")[1]):02}'
+    )
+    df['Joined'] = pd.to_datetime(df['Joined'], format='%m/%y')
+
+    return df
+
+def fill_na(df):
+    for column in df:
+        if df[column].dtypes == 'int' or df[column].dtypes == 'float':
+            df[column] = df[column].fillna(0)
+        else:
+            df[column] = df[column].fillna('')
+    return df
+					</code>
+				</div>
+				
+				<div class="img-caption">
 					<p class="data-p" align="justify">
 						The tweets were collected using the snstwitter module of the <a href="https://github.com/JustAnotherArchivist/snscrape">snscrape library</a>. The tweets collected were from 2016 to 2022.</p>
 				</div>
