@@ -6,7 +6,7 @@ class Header extends HTMLElement {
           <li><a href="index.html">Home</a></li>
           <li><a href="overview.html">Overview</a></li>
           <li><a href="data.html">Data</a></li>
-          <li><a href="methods.html">Methods</a></li>
+          <li><a href="modelling.html">Modelling</a></li>
           <li><a href="results.html">Results</a></li>
           <li><a href="team.html">Team</a></li>
       </ul>
