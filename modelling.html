@@ -21,28 +21,71 @@
 		<article id="methods" class="wrapper style3">
 			<div class="container">
 				<header>
-					<h2>Let's talk about our data science methodology.</h2>
-					<p>Proin odio consequat  sapien vestibulum consequat lorem dolore feugiat.</p>
-				</header>
-				<div class="row">
-					<div class="col-6 col-6-medium col-12-small">
-						<article class="box style2">
-							<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-							<h3><a href="#">Data Preprocessing</a></h3>
-							<p>Ornare nulla proin odio consequat.</p>
-						</article>
-					</div>
-					<div class="col-6 col-6-medium col-12-small">
-						<article class="box style2">
-							<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-							<h3><a href="#">Machine Learning</a></h3>
-							<p>Ornare nulla proin odio consequat.</p>
-						</article>
-					</div>
+					<h2>Here's how we modelled the data.</h2>
+				</header>		
+				<hr>		
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						First, let's look at a possible regression between just the data and the timeline.
+					</p>
+				</div>				
+				<div class="img-container">
+					<img src="images/non-existent.jpg" alt="Linear Regression" class="data-img">
 				</div>
-				<footer>
-					<p>Lorem ipsum dolor sit sapien vestibulum ipsum primis?</p>
-				</footer>
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						The results show that there is no significant relationship between the predictor (the date) and the response (tweet count). Next, let's check our hypothesis about whether there is or isn't peaks in activity (tweet count).
+				</div>
+				
+				<hr>		
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						Since the data is too granular, we combine them by months first, instead of by date. After combining them into months, we try several possibilities on what the peak prominence is. The best result we find is with a peak prominence of 5, which results in the following peaks:
+					</p>
+				</div>				
+				<div class="img-container">
+					<img src="images/non-existent.jpg" alt="Peaks" class="data-img">
+				</div>
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						The 5 peaks are on July 2020, October 2020, April 2021, April 2022, and August 2022, respectively. The most prominent peak is on October 2020. This peak is much higher than each of the other peaks. We examined what happened here during <a href="data.html">Data Exploration</a>, but we would still like to reiterate what happened at this time:
+						<br>
+						On October 21, 2020, Lt. Gen. Antonio Parlade issued a statement on Liza Soberano's participation in a webinar hosted by Gabriela Youth. Parlade warned Soberano not to associate herself with such groups, stating, "Liza Soberano, there' s still a chance to abdicate that group. If you don't, you will suffer the same fate as Josephine Anne Lapira @ELLA, former Deputy Secretary General of Gabriela Youth of UP, Manila and defender of women's rights, even against sexual predators amongst her comrades in the NPA unit she joined which is clearly stated in her handwritten letter addressed to a certain @EMIL." The general also mentioned the names of other celebrities previously linked to the NPA, stating, "The choice is yours Liza. And so with you Catriona. Don’t follow the path Ka Ella Colmenares (Locsin) took in the underground and NPA (New People’s Army) Quezon. I am sure Angel Locsin and Neri Colmenares will not tell you this."
+					</p>
+				</div>
+				
+				<hr>		
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						Next we look into getting more insight about the highest (most prominent) peak on October 2020. To do this we do segmented regression by splitting the data to before and after October 2020. We do linear regression on the data before and the data after. First we look into the regression in the data before.
+					</p>
+				</div>				
+				<div class="img-container">
+					<img src="images/non-existent.jpg" alt="Linear Regression on Data Before" class="data-img">
+				</div>
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						The p-value we get is 4.80e-5, with an RMSE of 1.64 and an R2 score of 0.44. With that, we say that for the data before October 2020, there is a significant relationship between the predictor and response.
+						<br>
+						Next let's look into the regression in the data after:
+				</div>		
+				<div class="img-container">
+					<img src="images/non-existent.jpg" alt="Linear Regression on Data After" class="data-img">
+				</div>
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						The p-value we get is 0.416, with an RMSE of 2.72 and an R2 score of 0.03. With that, we say that for the data after October 2020, there is no significant relationship between the predictor and response.
+						<br>
+						We can better see the regresssions when combined in one graph:
+				</div>		
+				<div class="img-container">
+					<img src="images/non-existent.jpg" alt="Segmented Regression" class="data-img">
+				</div>
+				<div class="img-caption">
+					<p class="data-p" align="justify">
+						In conclusion: we find a significant upward trend in the data before October 2020, but no significant trend in the data after October 2020. The lack of significant trend in the data after October 2020 may be attributed to the presence of multiple smaller peaks.	
+					</p>
+				</div>		
 			</div>
 		</article>
 
